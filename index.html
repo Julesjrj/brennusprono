@@ -543,7 +543,7 @@ DropGoal99,634</textarea>
    <div class="ctrl-row"><div class="ctrl-label">Joueur</div>
     <input type="text" id="t7-in-name" value="Jean Dupont">
     <div class="ctrl-grid2" style="margin-top:4px"><input type="text" id="t7-in-poste" value="Pilier gauche"><input type="text" id="t7-in-nat" value="France"></div>
-    <div class="ctrl-grid2" style="margin-top:4px"><input type="text" id="t7-in-age" value="26 ans"><div style="display:flex;gap:6px;align-items:center"><input type="text" id="t7-in-photo" placeholder="URL ou choisir..." style="flex:1"><label for="t7-file-photo" style="cursor:pointer;font-size:20px;color:#C9922A;flex-shrink:0" title="Choisir depuis galerie">📷</label><input type="file" id="t7-file-photo" accept="image/*" style="display:none" onchange="loadPhotoFile('t7-in-photo',this)"></div></div>
+    <div class="ctrl-grid2" style="margin-top:4px"><input type="text" id="t7-in-age" value="26 ans"><div style="display:flex;gap:6px;align-items:center"><input type="text" id="t7-in-photo" placeholder="URL ou choisir..." style="flex:1"><label for="t7-file-photo" style="cursor:pointer;font-size:20px;color:#C9922A;flex-shrink:0" title="Choisir depuis galerie">📷</label><input type="file" id="t7-file-photo" accept="image/*" style="display:none" onchange="loadPhotoFile('t7',this)"></div></div>
    </div>
    <div class="ctrl-row"><div class="ctrl-label">Transfert</div>
     <div class="ctrl-grid2"><select id="t7-in-from" onchange="t7Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%">
@@ -975,7 +975,7 @@ DropGoal99,634</textarea>
    <div class="ctrl-row"><div class="ctrl-label">Joueur</div>
     <input type="text" id="p7-in-name" value="Jean Dupont">
     <div class="ctrl-grid2" style="margin-top:4px"><input type="text" id="p7-in-poste" value="Pilier gauche"><input type="text" id="p7-in-nat" value="France"></div>
-    <div class="ctrl-grid2" style="margin-top:4px"><input type="text" id="p7-in-age" value="26 ans"><div style="display:flex;gap:6px;align-items:center"><input type="text" id="p7-in-photo" placeholder="URL ou choisir..." style="flex:1"><label for="p7-file-photo" style="cursor:pointer;font-size:20px;color:#C9922A;flex-shrink:0" title="Choisir depuis galerie">📷</label><input type="file" id="p7-file-photo" accept="image/*" style="display:none" onchange="loadPhotoFile('p7-in-photo',this)"></div></div>
+    <div class="ctrl-grid2" style="margin-top:4px"><input type="text" id="p7-in-age" value="26 ans"><div style="display:flex;gap:6px;align-items:center"><input type="text" id="p7-in-photo" placeholder="URL ou choisir..." style="flex:1"><label for="p7-file-photo" style="cursor:pointer;font-size:20px;color:#C9922A;flex-shrink:0" title="Choisir depuis galerie">📷</label><input type="file" id="p7-file-photo" accept="image/*" style="display:none" onchange="loadPhotoFile('p7',this)"></div></div>
    </div>
    <div class="ctrl-row"><div class="ctrl-label">Transfert</div>
     <div class="ctrl-grid2"><select id="p7-in-from" onchange="p7Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%">
@@ -2180,8 +2180,18 @@ function makeTemplates(p, dict, defTeams, defMatches, defFrom, defTo, defComp, d
     document.getElementById(p+"7-saison").textContent=document.getElementById(p+"7-in-saison").value;
     document.getElementById(p+"7-from").textContent=from; document.getElementById(p+"7-to").textContent=to;
     var photoEl=document.getElementById(p+"7-photo");
-    if(photo){photoEl.className="bp-player-photo";photoEl.innerHTML='<img src="'+photo+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%">';}
-    else{photoEl.className="bp-player-photo-placeholder";photoEl.textContent=initials(name);}
+    var storedPhoto = getPhoto(p+"7") || photo;
+    if(storedPhoto){
+      photoEl.className="bp-player-photo";
+      photoEl.style.backgroundImage="url("+storedPhoto+")";
+      photoEl.style.backgroundSize="cover";
+      photoEl.style.backgroundPosition="center";
+      photoEl.innerHTML="";
+    } else {
+      photoEl.className="bp-player-photo-placeholder";
+      photoEl.style.backgroundImage="";
+      photoEl.textContent=initials(name);
+    }
     document.getElementById(p+"7-logo-from").innerHTML=logoImg(from,38,38,dict);
     document.getElementById(p+"7-logo-to").innerHTML=logoImg(to,38,38,dict);
   }
@@ -2379,17 +2389,7 @@ function n4Apply(){
   document.getElementById("n4-motif").textContent=document.getElementById("n4-in-motif").value;
   document.getElementById("n4-comp").textContent=document.getElementById("n4-in-comp").value;
   var photoEl=document.getElementById("n4-photo");
-  if(photo){
-    photoEl.style.backgroundImage="url("+photo+")";
-    photoEl.style.backgroundSize="cover";
-    photoEl.style.backgroundPosition="center";
-    photoEl.textContent="";
-  } else {
-    photoEl.style.backgroundImage="";
-    var ini=name.trim().split(/\s+/);
-    photoEl.textContent=ini.length>=2?(ini[0][0]+ini[ini.length-1][0]).toUpperCase():name.substring(0,2).toUpperCase();
-  }
-  photoEl.style.borderColor=n4CurrentColor;
+  renderPhotoEl(photoEl, "n4", name, n4CurrentColor);
 }
 function n4Reset(){
   document.getElementById("n4-in-nation").value="France";
@@ -2454,6 +2454,52 @@ function n6Reset(){
 window.addEventListener("load", function(){
   n1Apply(); n2Apply(); n3Apply(); n4Apply(); n5Apply(); n6Apply();
 });
+
+
+// ══════ GESTION PHOTOS ══════
+var PHOTO_STORE = {};  // stocke les dataURL par clé
+
+function loadPhotoFile(key, fileInput) {
+  var file = fileInput.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    PHOTO_STORE[key] = e.target.result;
+    applyPhoto(key);
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearPhoto(key) {
+  delete PHOTO_STORE[key];
+  applyPhoto(key);
+}
+
+function applyPhoto(key) {
+  // Appliquer immédiatement au bon élément
+  if (key === "t7") { t7Apply(); }
+  else if (key === "p7") { p7Apply(); }
+  else if (key === "n4") { n4Apply(); }
+}
+
+function getPhoto(key) {
+  return PHOTO_STORE[key] || "";
+}
+
+function renderPhotoEl(el, photoKey, name, borderColor) {
+  var photo = getPhoto(photoKey);
+  if (photo) {
+    el.style.backgroundImage = "url("+photo+")";
+    el.style.backgroundSize = "cover";
+    el.style.backgroundPosition = "center";
+    el.textContent = "";
+    el.style.border = "2px solid " + (borderColor||"#C9922A");
+  } else {
+    el.style.backgroundImage = "";
+    var ini = name.trim().split(/\s+/);
+    el.textContent = ini.length>=2 ? (ini[0][0]+ini[ini.length-1][0]).toUpperCase() : name.substring(0,2).toUpperCase();
+  }
+}
 
 </script>
 
@@ -2750,8 +2796,8 @@ Italie,3,0,0,1,1</textarea>
     <input type="text" id="n4-in-name" value="Antoine Dupont">
     <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
      <input type="text" id="n4-in-photo" placeholder="URL ou choisir une photo..." style="flex:1">
-     <label for="n4-file-photo" style="cursor:pointer;font-size:20px;color:#C9922A;flex-shrink:0" title="Choisir depuis la galerie">📷</label>
-     <input type="file" id="n4-file-photo" accept="image/*" style="display:none" onchange="loadPhotoFile('n4-in-photo',this)">
+     <label for="n4-file-photo" style="cursor:pointer;font-size:20px;color:#C9922A;flex-shrink:0" title="Choisir depuis la galerie">📷</label><button onclick="clearPhoto('n4')" style="background:transparent;border:1px solid #333;color:#555;font-size:12px;padding:4px 8px;border-radius:4px;cursor:pointer;flex-shrink:0" title="Supprimer la photo">✕</button>
+     <input type="file" id="n4-file-photo" accept="image/*" style="display:none" onchange="loadPhotoFile('n4',this)">
     </div>
     <input type="text" id="n4-in-poste" value="Demi de mêlée" style="margin-top:4px">
    </div>
