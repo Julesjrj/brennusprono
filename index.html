@@ -14,9 +14,13 @@ h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 
 .format-label { font-size: 11px; color: #555; letter-spacing: 1px; text-transform: uppercase; }
 .fmt-btn { background: #1a1a1a; border: 1px solid #2a2a2a; color: #666; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
 .fmt-btn.active { background: #1D9E75; color: #fff; border-color: #1D9E75; font-weight: 700; }
-.nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; align-items: center; }
-.nav-sep { width: 1px; background: #2a2a2a; align-self: stretch; margin: 0 6px; }
-.nav-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #444; padding: 0 2px; }
+.nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; max-width: 1100px; }
+.nav-col { display: flex; flex-direction: column; gap: 5px; }
+.nav-col-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #C9922A; padding: 4px 2px; border-bottom: 1px solid #C9922A33; margin-bottom: 2px; font-weight: 700; }
+.nav-col-btns { display: flex; flex-direction: column; gap: 4px; }
+.nav-sep { display: none; }
+.nav-label { display: none; }
+@media(max-width:600px) { .nav { grid-template-columns: 1fr; } }
 .nav-btn { background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 12px; border-radius: 4px; cursor: pointer; transition: all 0.15s; }
 .nav-btn:hover,.nav-btn.active { background: #C9922A; color: #0a0a0a; border-color: #C9922A; font-weight: 700; }
 .section { display: none; }
@@ -215,33 +219,46 @@ h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 
   <button class="fmt-btn" id="fmt-story" onclick="setFormat('story')">&#9646; Story (9:16)</button>
 </div>
 <nav class="nav">
-  <span class="nav-label">Top 14</span>
-  <button class="nav-btn active" onclick="showSection('t1',this)">1 · Classement</button>
-  <button class="nav-btn" onclick="showSection('t2',this)">2 · Texte fort</button>
-  <button class="nav-btn" onclick="showSection('t3',this)">3 · Humour</button>
-  <button class="nav-btn" onclick="showSection('t4',this)">4 · Feature</button>
-  <button class="nav-btn" onclick="showSection('t5',this)">5 · Résultats</button>
-  <button class="nav-btn" onclick="showSection('t6',this)">6 · Podium</button>
-  <button class="nav-btn" onclick="showSection('t7',this)">7 · Mercato</button>
-  <button class="nav-btn" onclick="showSection('t8',this)">8 · Lancement</button>
-  <div class="nav-sep"></div>
-  <span class="nav-label">Pro D2</span>
-  <button class="nav-btn" onclick="showSection('p1',this)">1 · Classement</button>
-  <button class="nav-btn" onclick="showSection('p2',this)">2 · Texte fort</button>
-  <button class="nav-btn" onclick="showSection('p3',this)">3 · Humour</button>
-  <button class="nav-btn" onclick="showSection('p4',this)">4 · Feature</button>
-  <button class="nav-btn" onclick="showSection('p5',this)">5 · Résultats</button>
-  <button class="nav-btn" onclick="showSection('p6',this)">6 · Podium</button>
-  <button class="nav-btn" onclick="showSection('p7',this)">7 · Mercato</button>
-  <button class="nav-btn" onclick="showSection('p8',this)">8 · Lancement</button>
-  <div class="nav-sep"></div>
-  <span class="nav-label">&#127944; XV France</span>
-  <button class="nav-btn" onclick="showSection('n1',this)">Annonce</button>
-  <button class="nav-btn" onclick="showSection('n2',this)">Résultat</button>
-  <button class="nav-btn" onclick="showSection('n3',this)">Classement</button>
-  <button class="nav-btn" onclick="showSection('n4',this)">Forfait</button>
-  <button class="nav-btn" onclick="showSection('n5',this)">XV départ</button>
-  <button class="nav-btn" onclick="showSection('n6',this)">Actu</button>
+  <div class="nav-col">
+    <div class="nav-col-title">🏆 Top 14</div>
+    <div class="nav-col-btns">
+      <button class="nav-btn active" onclick="showSection('t1',this)">Classement</button>
+      <button class="nav-btn" onclick="showSection('t2',this)">Texte fort</button>
+      <button class="nav-btn" onclick="showSection('t3',this)">Humour</button>
+      <button class="nav-btn" onclick="showSection('t4',this)">Feature</button>
+      <button class="nav-btn" onclick="showSection('t5',this)">Résultats</button>
+      <button class="nav-btn" onclick="showSection('t6',this)">Podium</button>
+      <button class="nav-btn" onclick="showSection('t7',this)">Mercato</button>
+      <button class="nav-btn" onclick="showSection('t8',this)">Lancement</button>
+      <button class="nav-btn" onclick="showSection('c1',this)">Composition</button>
+    </div>
+  </div>
+  <div class="nav-col">
+    <div class="nav-col-title">🏉 Pro D2</div>
+    <div class="nav-col-btns">
+      <button class="nav-btn" onclick="showSection('p1',this)">Classement</button>
+      <button class="nav-btn" onclick="showSection('p2',this)">Texte fort</button>
+      <button class="nav-btn" onclick="showSection('p3',this)">Humour</button>
+      <button class="nav-btn" onclick="showSection('p4',this)">Feature</button>
+      <button class="nav-btn" onclick="showSection('p5',this)">Résultats</button>
+      <button class="nav-btn" onclick="showSection('p6',this)">Podium</button>
+      <button class="nav-btn" onclick="showSection('p7',this)">Mercato</button>
+      <button class="nav-btn" onclick="showSection('p8',this)">Lancement</button>
+      <button class="nav-btn" onclick="showSection('c2',this)">Composition</button>
+    </div>
+  </div>
+  <div class="nav-col">
+    <div class="nav-col-title">⚜ XV de France</div>
+    <div class="nav-col-btns">
+      <button class="nav-btn" onclick="showSection('n1',this)">Annonce match</button>
+      <button class="nav-btn" onclick="showSection('n2',this)">Résultat</button>
+      <button class="nav-btn" onclick="showSection('n3',this)">Classement</button>
+      <button class="nav-btn" onclick="showSection('n4',this)">Forfait / Sélection</button>
+      <button class="nav-btn" onclick="showSection('n5',this)">XV de départ</button>
+      <button class="nav-btn" onclick="showSection('n6',this)">Actu / Analyse</button>
+      <button class="nav-btn" onclick="showSection('c3',this)">Composition</button>
+    </div>
+  </div>
 </nav>
 
 <!-- ═══════════════════ Top 14 : CLASSEMENT ═══════════════════ -->
@@ -2501,6 +2518,98 @@ function renderPhotoEl(el, photoKey, name, borderColor) {
   }
 }
 
+
+
+
+
+// ══════════ COMPOSITIONS (style terrain) ══════════
+
+var ROWS_TITULAIRES = [[1],[2,3],[4,5],[6,7,8],[9,10],[11,12,13,14],[15]];
+var ROWS_REMPLACANTS = [[16,17,18],[19,20,21],[22,23]];
+var POSTES_MAP = {
+  1:"Pilier G",2:"Talonneur",3:"Pilier D",4:"2e ligne",5:"2e ligne",
+  6:"3L aile",7:"3L aile",8:"3L centre",9:"Mêlée",10:"Ouvreur",
+  11:"Ailier G",12:"Centre",13:"Centre",14:"Ailier D",15:"Arrière",
+  16:"Remp.",17:"Remp.",18:"Remp.",19:"Remp.",20:"Remp.",21:"Remp.",22:"Remp.",23:"Remp."
+};
+
+function renderCompoTerrain(prefix, isTitulaires) {
+  var elId = isTitulaires ? prefix+"-players" : prefix+"-bench";
+  var el = document.getElementById(elId);
+  if (!el) return;
+  el.innerHTML = "";
+  var rows = isTitulaires ? ROWS_TITULAIRES : ROWS_REMPLACANTS;
+  rows.forEach(function(rowNums) {
+    var row = document.createElement("div");
+    row.style.cssText = "display:flex;justify-content:center;gap:4px;margin-bottom:6px";
+    rowNums.forEach(function(num) {
+      var inp = document.getElementById(prefix+"-p"+num);
+      var name = inp ? inp.value.trim() : "";
+      var isRepl = num >= 16;
+      var cell = document.createElement("div");
+      cell.style.cssText = "text-align:center;min-width:"+(isTitulaires?"52px":"48px");
+      cell.innerHTML =
+        '<div style="width:'+(isRepl?"30":"34")+'px;height:'+(isRepl?"30":"34")+'px;border-radius:50%;'
+        +'background:'+(isRepl?"#111":"#1a2a0a")+';border:1px solid '+(isRepl?"#2a2a2a":"#2a4a0a")+';'
+        +'display:flex;align-items:center;justify-content:center;margin:0 auto 3px;'
+        +'font-size:'+(isRepl?"11":"12")+'px;font-weight:700;color:'+(isRepl?"#444":"#C9922A")+';'
+        +'font-family:Barlow Condensed,sans-serif">'+num+'</div>'
+        +'<div style="font-size:'+(isRepl?"8":"9")+'px;color:'+(isRepl?"#555":"#ccc")+';'
+        +'font-family:Barlow Condensed,sans-serif;font-weight:600;text-transform:uppercase;'
+        +'letter-spacing:0.3px;line-height:1.1;max-width:52px;margin:0 auto">'+name+'</div>';
+      row.appendChild(cell);
+    });
+    el.appendChild(row);
+  });
+}
+
+function compoApply(prefix, getDict, getEntity) {
+  var entity = getEntity();
+  var match  = document.getElementById(prefix+"-in-match").value;
+  document.getElementById(prefix+"-title").textContent = "Composition";
+  document.getElementById(prefix+"-sub").textContent   = entity+" · "+match;
+  var logoEl = document.getElementById(prefix+"-logo");
+  var dict = getDict();
+  var url  = dict ? dict[entity] : null;
+  if (url) {
+    logoEl.innerHTML = '<img style="width:40px;height:40px;object-fit:contain" src="'+url+'" alt="'+entity+'">';
+  } else if (prefix === "c3" && typeof ncLogo === "function") {
+    logoEl.innerHTML = ncLogo(entity, 40);
+  } else {
+    logoEl.innerHTML = "";
+  }
+  renderCompoTerrain(prefix, true);
+  renderCompoTerrain(prefix, false);
+}
+
+function c1Apply() { compoApply("c1", function(){return LOGOS;},    function(){return document.getElementById("c1-in-club").value;}); }
+function c2Apply() { compoApply("c2", function(){return LOGOS_P2;}, function(){return document.getElementById("c2-in-club").value;}); }
+function c3Apply() { compoApply("c3", function(){return LOGOS_NC;}, function(){return document.getElementById("c3-in-nation").value;}); }
+
+function c1Reset() {
+  document.getElementById("c1-in-club").value  = "Toulouse";
+  document.getElementById("c1-in-match").value = "J1 · 2026-2027";
+  for(var i=1;i<=23;i++){var e=document.getElementById("c1-p"+i);if(e)e.value="";}
+  c1Apply();
+}
+function c2Reset() {
+  document.getElementById("c2-in-club").value  = "Oyonnax";
+  document.getElementById("c2-in-match").value = "J1 · 2026-2027";
+  for(var i=1;i<=23;i++){var e=document.getElementById("c2-p"+i);if(e)e.value="";}
+  c2Apply();
+}
+function c3Reset() {
+  document.getElementById("c3-in-nation").value = "France";
+  document.getElementById("c3-in-match").value  = "France vs Nouvelle-Zélande";
+  var def=["Mauvaka","Baille","Atonio","Willemse","Flament","Jelonch","Cros","Macalou","Dupont","Ntamack","Penaud","Fickou","Moefana","Villière","Ramos"];
+  for(var i=1;i<=23;i++){var e=document.getElementById("c3-p"+i);if(e)e.value=def[i-1]||"";}
+  c3Apply();
+}
+
+window.addEventListener("load", function() {
+  c1Apply(); c2Apply(); c3Apply();
+});
+
 </script>
 
 <!-- ═══════════════════ NC1 : ANNONCE MATCH ═══════════════════ -->
@@ -2942,5 +3051,139 @@ Ramos</textarea>
  </div>
 </div>
 
+
+
+   </div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="c1Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="c1Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('c1-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+   </div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="c2Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="c2Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('c2-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+   </div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="c3Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="c3Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('c3-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<!-- ═══ C1 COMPOSITION Top 14 ═══ -->
+<div id="sec-c1" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="c1-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:16px 18px 14px">
+     <div class="bp-header">
+      <div><div class="bp-title" id="c1-title">Composition</div><div class="bp-title-sub" id="c1-sub">Toulouse · Top 14</div></div>
+      <div id="c1-logo" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center"></div>
+     </div>
+     <div id="c1-terrain" style="background:#0a1a0a;border:1px solid #1a3a1a;border-radius:8px;padding:10px 6px;margin-bottom:10px">
+      <div id="c1-players"></div>
+      <div style="height:1px;background:#C9922A;opacity:0.2;margin:8px 16px"></div>
+      <div id="c1-bench"></div>
+     </div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Composition Top 14</div>
+   <div class="ctrl-row"><div class="ctrl-label">Club</div><select id="c1-in-club" onchange="c1Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%"><option value="Toulouse" selected>Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select></div>
+   <div class="ctrl-row"><div class="ctrl-label">Match / Journée</div><input type="text" id="c1-in-match" value="J1 · 2026-2027" oninput="c1Apply()"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Joueurs</div><div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:8px;padding:10px 12px"><div style="font-size:9px;letter-spacing:2px;color:#C9922A;text-transform:uppercase;margin-bottom:8px;font-family:Barlow Condensed,sans-serif">Titulaires</div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">1</div><div style="font-size:10px;color:#444;text-transform:uppercase">Pilier G</div><input type="text" id="c1-p1" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">2</div><div style="font-size:10px;color:#444;text-transform:uppercase">Talonneur</div><input type="text" id="c1-p2" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">3</div><div style="font-size:10px;color:#444;text-transform:uppercase">Pilier D</div><input type="text" id="c1-p3" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">4</div><div style="font-size:10px;color:#444;text-transform:uppercase">2e ligne</div><input type="text" id="c1-p4" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">5</div><div style="font-size:10px;color:#444;text-transform:uppercase">2e ligne</div><input type="text" id="c1-p5" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">6</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L aile</div><input type="text" id="c1-p6" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">7</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L aile</div><input type="text" id="c1-p7" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">8</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L centre</div><input type="text" id="c1-p8" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">9</div><div style="font-size:10px;color:#444;text-transform:uppercase">Mêlée</div><input type="text" id="c1-p9" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">10</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ouvreur</div><input type="text" id="c1-p10" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">11</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ailier G</div><input type="text" id="c1-p11" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">12</div><div style="font-size:10px;color:#444;text-transform:uppercase">Centre</div><input type="text" id="c1-p12" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">13</div><div style="font-size:10px;color:#444;text-transform:uppercase">Centre</div><input type="text" id="c1-p13" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">14</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ailier D</div><input type="text" id="c1-p14" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">15</div><div style="font-size:10px;color:#444;text-transform:uppercase">Arrière</div><input type="text" id="c1-p15" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="height:1px;background:#C9922A;opacity:0.3;margin:8px 0"></div><div style="font-size:9px;letter-spacing:2px;color:#555;text-transform:uppercase;margin-bottom:8px;font-family:Barlow Condensed,sans-serif">Remplaçants</div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">16</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c1-p16" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">17</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c1-p17" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">18</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c1-p18" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">19</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c1-p19" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">20</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c1-p20" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">21</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c1-p21" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">22</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c1-p22" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">23</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c1-p23" value="" oninput="c1Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div></div></div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="c1Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="c1Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('c1-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+<!-- ═══ C2 COMPOSITION Pro D2 ═══ -->
+<div id="sec-c2" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="c2-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:16px 18px 14px">
+     <div class="bp-header">
+      <div><div class="bp-title" id="c2-title">Composition</div><div class="bp-title-sub" id="c2-sub">Oyonnax · Pro D2</div></div>
+      <div id="c2-logo" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center"></div>
+     </div>
+     <div id="c2-terrain" style="background:#0a1a0a;border:1px solid #1a3a1a;border-radius:8px;padding:10px 6px;margin-bottom:10px">
+      <div id="c2-players"></div>
+      <div style="height:1px;background:#C9922A;opacity:0.2;margin:8px 16px"></div>
+      <div id="c2-bench"></div>
+     </div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Composition Pro D2</div>
+   <div class="ctrl-row"><div class="ctrl-label">Club</div><select id="c2-in-club" onchange="c2Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%"><option value="Oyonnax" selected>Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select></div>
+   <div class="ctrl-row"><div class="ctrl-label">Match / Journée</div><input type="text" id="c2-in-match" value="J1 · 2026-2027" oninput="c2Apply()"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Joueurs</div><div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:8px;padding:10px 12px"><div style="font-size:9px;letter-spacing:2px;color:#C9922A;text-transform:uppercase;margin-bottom:8px;font-family:Barlow Condensed,sans-serif">Titulaires</div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">1</div><div style="font-size:10px;color:#444;text-transform:uppercase">Pilier G</div><input type="text" id="c2-p1" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">2</div><div style="font-size:10px;color:#444;text-transform:uppercase">Talonneur</div><input type="text" id="c2-p2" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">3</div><div style="font-size:10px;color:#444;text-transform:uppercase">Pilier D</div><input type="text" id="c2-p3" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">4</div><div style="font-size:10px;color:#444;text-transform:uppercase">2e ligne</div><input type="text" id="c2-p4" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">5</div><div style="font-size:10px;color:#444;text-transform:uppercase">2e ligne</div><input type="text" id="c2-p5" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">6</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L aile</div><input type="text" id="c2-p6" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">7</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L aile</div><input type="text" id="c2-p7" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">8</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L centre</div><input type="text" id="c2-p8" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">9</div><div style="font-size:10px;color:#444;text-transform:uppercase">Mêlée</div><input type="text" id="c2-p9" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">10</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ouvreur</div><input type="text" id="c2-p10" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">11</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ailier G</div><input type="text" id="c2-p11" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">12</div><div style="font-size:10px;color:#444;text-transform:uppercase">Centre</div><input type="text" id="c2-p12" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">13</div><div style="font-size:10px;color:#444;text-transform:uppercase">Centre</div><input type="text" id="c2-p13" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">14</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ailier D</div><input type="text" id="c2-p14" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">15</div><div style="font-size:10px;color:#444;text-transform:uppercase">Arrière</div><input type="text" id="c2-p15" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="height:1px;background:#C9922A;opacity:0.3;margin:8px 0"></div><div style="font-size:9px;letter-spacing:2px;color:#555;text-transform:uppercase;margin-bottom:8px;font-family:Barlow Condensed,sans-serif">Remplaçants</div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">16</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c2-p16" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">17</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c2-p17" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">18</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c2-p18" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">19</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c2-p19" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">20</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c2-p20" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">21</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c2-p21" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">22</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c2-p22" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">23</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c2-p23" value="" oninput="c2Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div></div></div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="c2Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="c2Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('c2-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+<!-- ═══ C3 COMPOSITION XV de France ═══ -->
+<div id="sec-c3" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="c3-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:16px 18px 14px">
+     <div class="bp-header">
+      <div><div class="bp-title" id="c3-title">Composition</div><div class="bp-title-sub" id="c3-sub">France · Nations Championship</div></div>
+      <div id="c3-logo" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center"></div>
+     </div>
+     <div id="c3-terrain" style="background:#0a1a0a;border:1px solid #1a3a1a;border-radius:8px;padding:10px 6px;margin-bottom:10px">
+      <div id="c3-players"></div>
+      <div style="height:1px;background:#C9922A;opacity:0.2;margin:8px 16px"></div>
+      <div id="c3-bench"></div>
+     </div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Composition XV de France</div>
+   <div class="ctrl-row"><div class="ctrl-label">Nation</div><select id="c3-in-nation" onchange="c3Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%"><optgroup label="── Hémisphère Nord ──"><option value="France" selected>France</option><option value="Angleterre">Angleterre</option><option value="Irlande">Irlande</option><option value="Écosse">Écosse</option><option value="Pays de Galles">Pays de Galles</option><option value="Italie">Italie</option></optgroup><optgroup label="── Hémisphère Sud ──"><option value="Nouvelle-Zélande">Nouvelle-Zélande</option><option value="Afrique du Sud">Afrique du Sud</option><option value="Argentine">Argentine</option><option value="Australie">Australie</option><option value="Japon">Japon</option><option value="Fidji">Fidji</option></optgroup></select></div>
+   <div class="ctrl-row"><div class="ctrl-label">Match / Journée</div><input type="text" id="c3-in-match" value="France vs Nouvelle-Zélande" oninput="c3Apply()"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Joueurs</div><div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:8px;padding:10px 12px"><div style="font-size:9px;letter-spacing:2px;color:#C9922A;text-transform:uppercase;margin-bottom:8px;font-family:Barlow Condensed,sans-serif">Titulaires</div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">1</div><div style="font-size:10px;color:#444;text-transform:uppercase">Pilier G</div><input type="text" id="c3-p1" value="Mauvaka" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">2</div><div style="font-size:10px;color:#444;text-transform:uppercase">Talonneur</div><input type="text" id="c3-p2" value="Baille" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">3</div><div style="font-size:10px;color:#444;text-transform:uppercase">Pilier D</div><input type="text" id="c3-p3" value="Atonio" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">4</div><div style="font-size:10px;color:#444;text-transform:uppercase">2e ligne</div><input type="text" id="c3-p4" value="Willemse" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">5</div><div style="font-size:10px;color:#444;text-transform:uppercase">2e ligne</div><input type="text" id="c3-p5" value="Flament" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">6</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L aile</div><input type="text" id="c3-p6" value="Jelonch" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">7</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L aile</div><input type="text" id="c3-p7" value="Cros" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">8</div><div style="font-size:10px;color:#444;text-transform:uppercase">3L centre</div><input type="text" id="c3-p8" value="Macalou" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">9</div><div style="font-size:10px;color:#444;text-transform:uppercase">Mêlée</div><input type="text" id="c3-p9" value="Dupont" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">10</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ouvreur</div><input type="text" id="c3-p10" value="Ntamack" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">11</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ailier G</div><input type="text" id="c3-p11" value="Penaud" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">12</div><div style="font-size:10px;color:#444;text-transform:uppercase">Centre</div><input type="text" id="c3-p12" value="Fickou" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">13</div><div style="font-size:10px;color:#444;text-transform:uppercase">Centre</div><input type="text" id="c3-p13" value="Moefana" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">14</div><div style="font-size:10px;color:#444;text-transform:uppercase">Ailier D</div><input type="text" id="c3-p14" value="Villière" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#C9922A;font-family:Barlow Condensed,sans-serif">15</div><div style="font-size:10px;color:#444;text-transform:uppercase">Arrière</div><input type="text" id="c3-p15" value="Ramos" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%"></div><div style="height:1px;background:#C9922A;opacity:0.3;margin:8px 0"></div><div style="font-size:9px;letter-spacing:2px;color:#555;text-transform:uppercase;margin-bottom:8px;font-family:Barlow Condensed,sans-serif">Remplaçants</div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">16</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c3-p16" value="" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">17</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c3-p17" value="" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">18</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c3-p18" value="" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">19</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c3-p19" value="" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">20</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c3-p20" value="" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">21</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c3-p21" value="" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">22</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c3-p22" value="" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div><div style="display:grid;grid-template-columns:26px 90px 1fr;align-items:center;gap:6px;margin-bottom:4px"><div style="text-align:center;font-size:11px;font-weight:700;color:#555;font-family:Barlow Condensed,sans-serif">23</div><div style="font-size:10px;color:#333;text-transform:uppercase">Remplaçant</div><input type="text" id="c3-p23" value="" oninput="c3Apply()" style="font-size:13px;padding:4px 7px;border-radius:4px;background:#0d0d0d;border:1px solid #1a1a1a;color:#666;font-family:inherit;width:100%"></div></div></div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="c3Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="c3Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('c3-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
 </body>
 </html>
