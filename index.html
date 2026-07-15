@@ -259,6 +259,15 @@ h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 
       <button class="nav-btn" onclick="showSection('c3',this)">Composition</button>
     </div>
   </div>
+  <div class="nav-col" style="grid-column:1/-1;border-top:1px solid #1a1a1a;padding-top:10px;margin-top:4px">
+    <div class="nav-col-title">⚡ Formats transversaux</div>
+    <div class="nav-col-btns" style="flex-direction:row;flex-wrap:wrap;gap:4px">
+      <button class="nav-btn" onclick="showSection('x1',this)">Choc du week-end</button>
+      <button class="nav-btn" onclick="showSection('x2',this)">Sondage</button>
+      <button class="nav-btn" onclick="showSection('x3',this)">Top joueurs</button>
+      <button class="nav-btn" onclick="showSection('x4',this)">Infographie stat</button>
+    </div>
+  </div>
 </nav>
 
 <!-- ═══════════════════ Top 14 : CLASSEMENT ═══════════════════ -->
@@ -292,22 +301,108 @@ h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 
     <input type="text" id="t1-in-sub" value="Saison 2025–2026" style="margin-top:4px">
     <input type="text" id="t1-in-badge" value="J24" style="margin-top:4px">
    </div>
-   <div class="ctrl-row"><div class="ctrl-label">Équipes (Nom,Pts,V,D,classe)</div>
-    <div class="ctrl-hint">classes : semi / playoff / access / relegate</div>
-    <textarea id="t1-in-teams" rows="16">Toulouse,82,17,7,semi
-Montpellier,74,15,8,semi
-Pau,73,16,8,playoff
-Paris,73,14,9,playoff
-Bordeaux,68,14,10,playoff
-Clermont,67,14,10,playoff
-Racing 92,65,14,9,
-La Rochelle,63,13,11,
-Toulon,55,11,12,
-Lyon,52,11,12,
-Castres,49,10,14,
-Bayonne,46,10,14,
-Perpignan,25,5,19,access
-Vannes,7,1,22,relegate</textarea>
+   <div class="ctrl-row"><div class="ctrl-label">Équipes — Club · Pts · V · D · Zone</div>
+    <div style="max-height:460px;overflow-y:auto;background:#0d0d0d;border:1px solid #1e1e1e;border-radius:8px;padding:10px">
+     <div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;margin-bottom:4px"><div></div><div style="font-size:9px;color:#444;text-transform:uppercase">Club</div><div style="font-size:9px;color:#444;text-align:center">Pts</div><div style="font-size:9px;color:#444;text-align:center">V</div><div style="font-size:9px;color:#444;text-align:center">D</div><div style="font-size:9px;color:#444">Zone</div></div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">1</div>
+  <select id="t1-club1" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse" selected>Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts1" value="82" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v1" value="17" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d1" value="7" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls1" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi"selected>Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">2</div>
+  <select id="t1-club2" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier" selected>Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts2" value="74" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v2" value="15" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d2" value="8" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls2" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi"selected>Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">3</div>
+  <select id="t1-club3" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau" selected>Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts3" value="73" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v3" value="16" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d3" value="8" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls3" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff"selected>Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">4</div>
+  <select id="t1-club4" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris" selected>Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts4" value="73" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v4" value="14" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d4" value="9" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls4" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff"selected>Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">5</div>
+  <select id="t1-club5" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux" selected>Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts5" value="68" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v5" value="14" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d5" value="10" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls5" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff"selected>Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">6</div>
+  <select id="t1-club6" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont" selected>Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts6" value="67" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v6" value="14" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d6" value="10" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls6" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff"selected>Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">7</div>
+  <select id="t1-club7" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92" selected>Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts7" value="65" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v7" value="14" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d7" value="9" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls7" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">8</div>
+  <select id="t1-club8" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle" selected>La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts8" value="63" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v8" value="13" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d8" value="11" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls8" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">9</div>
+  <select id="t1-club9" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon" selected>Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts9" value="55" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v9" value="11" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d9" value="12" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls9" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">10</div>
+  <select id="t1-club10" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon" selected>Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts10" value="52" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v10" value="11" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d10" value="12" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls10" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">11</div>
+  <select id="t1-club11" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres" selected>Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts11" value="49" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v11" value="10" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d11" value="14" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls11" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">12</div>
+  <select id="t1-club12" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne" selected>Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts12" value="46" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v12" value="10" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d12" value="14" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls12" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">13</div>
+  <select id="t1-club13" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan" selected>Perpignan</option><option value="Vannes">Vannes</option></select>
+  <input type="number" id="t1-pts13" value="25" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v13" value="5" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d13" value="19" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls13" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access"selected>Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">14</div>
+  <select id="t1-club14" onchange="t1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes" selected>Vannes</option></select>
+  <input type="number" id="t1-pts14" value="7" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-v14" value="1" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="t1-d14" value="22" min="0" oninput="t1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="t1-cls14" onchange="t1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate"selected>Relég.</option></select>
+</div>
+    </div>
    </div>
    <div class="ctrl-btns">
     <button class="ctrl-btn secondary" onclick="t1Reset()">Réinitialiser</button>
@@ -458,15 +553,7 @@ On est tous pareils.</textarea>
     <div class="ctrl-grid2"><input type="text" id="t5-in-title" value="Résultats"><input type="text" id="t5-in-badge" value="J24"></div>
     <input type="text" id="t5-in-sub" value="Top 14 · Saison 2025–2026" style="margin-top:4px">
    </div>
-   <div class="ctrl-row"><div class="ctrl-label">Matchs (Domicile,ScoreDom,ScoreExt,Extérieur)</div>
-    <textarea id="t5-in-matches" rows="8">Toulouse,34,10,Vannes
-La Rochelle,22,18,Toulon
-Bordeaux,27,20,Clermont
-Racing 92,15,29,Montpellier
-Bayonne,18,18,Pau
-Lyon,21,24,Paris
-Perpignan,10,31,Castres</textarea>
-   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Matchs</div><div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:8px;padding:10px"><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;margin-bottom:4px"><div style="font-size:9px;color:#444;text-align:center">Domicile</div><div style="font-size:9px;color:#444;text-align:center">Dom</div><div></div><div style="font-size:9px;color:#444;text-align:center">Ext</div><div style="font-size:9px;color:#444;text-align:center">Extérieur</div></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="t5-home1" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse" selected>Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select><input type="number" id="t5-hs1" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="t5-as1" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="t5-away1" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier" selected>Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="t5-home2" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau" selected>Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select><input type="number" id="t5-hs2" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="t5-as2" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="t5-away2" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris" selected>Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="t5-home3" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux" selected>Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select><input type="number" id="t5-hs3" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="t5-as3" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="t5-away3" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont" selected>Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="t5-home4" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92" selected>Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select><input type="number" id="t5-hs4" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="t5-as4" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="t5-away4" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle" selected>La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="t5-home5" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon" selected>Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select><input type="number" id="t5-hs5" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="t5-as5" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="t5-away5" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon" selected>Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="t5-home6" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres" selected>Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select><input type="number" id="t5-hs6" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="t5-as6" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="t5-away6" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne" selected>Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="t5-home7" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan" selected>Perpignan</option><option value="Vannes">Vannes</option></select><input type="number" id="t5-hs7" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="t5-as7" value="0" min="0" oninput="t5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="t5-away7" onchange="t5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes" selected>Vannes</option></select></div></div></div>
    <div class="ctrl-btns">
     <button class="ctrl-btn secondary" onclick="t5Reset()">Réinitialiser</button>
     <button class="ctrl-btn primary" onclick="t5Apply()">Appliquer</button>
@@ -722,24 +809,122 @@ DropGoal99,634</textarea>
     <input type="text" id="p1-in-sub" value="Saison 2025–2026" style="margin-top:4px">
     <input type="text" id="p1-in-badge" value="J24" style="margin-top:4px">
    </div>
-   <div class="ctrl-row"><div class="ctrl-label">Équipes (Nom,Pts,V,D,classe)</div>
-    <div class="ctrl-hint">classes : semi / playoff / access / relegate</div>
-    <textarea id="p1-in-teams" rows="16">Oyonnax,62,13,8,semi
-Grenoble,60,12,8,semi
-Colomiers,55,11,9,playoff
-Brive,53,11,10,playoff
-Biarritz,51,10,10,playoff
-Montauban,49,10,10,playoff
-Aurillac,48,10,11,
-Agen,45,9,11,
-Nevers,43,9,12,
-Beziers,40,8,12,
-Provence,38,8,13,
-Dax,35,7,13,
-Valence,32,7,14,
-Angouleme,28,6,15,
-Nice,20,4,18,access
-Narbonne,5,1,21,relegate</textarea>
+   <div class="ctrl-row"><div class="ctrl-label">Équipes — Club · Pts · V · D · Zone</div>
+    <div style="max-height:460px;overflow-y:auto;background:#0d0d0d;border:1px solid #1e1e1e;border-radius:8px;padding:10px">
+     <div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;margin-bottom:4px"><div></div><div style="font-size:9px;color:#444;text-transform:uppercase">Club</div><div style="font-size:9px;color:#444;text-align:center">Pts</div><div style="font-size:9px;color:#444;text-align:center">V</div><div style="font-size:9px;color:#444;text-align:center">D</div><div style="font-size:9px;color:#444">Zone</div></div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">1</div>
+  <select id="p1-club1" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax" selected>Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts1" value="62" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v1" value="13" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d1" value="8" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls1" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi"selected>Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">2</div>
+  <select id="p1-club2" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble" selected>Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts2" value="60" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v2" value="12" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d2" value="8" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls2" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi"selected>Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">3</div>
+  <select id="p1-club3" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers" selected>Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts3" value="55" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v3" value="11" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d3" value="9" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls3" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff"selected>Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">4</div>
+  <select id="p1-club4" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive" selected>Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts4" value="53" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v4" value="11" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d4" value="10" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls4" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff"selected>Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">5</div>
+  <select id="p1-club5" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz" selected>Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts5" value="51" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v5" value="10" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d5" value="10" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls5" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff"selected>Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">6</div>
+  <select id="p1-club6" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban" selected>Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts6" value="49" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v6" value="10" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d6" value="10" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls6" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff"selected>Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">7</div>
+  <select id="p1-club7" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac" selected>Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts7" value="48" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v7" value="10" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d7" value="11" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls7" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">8</div>
+  <select id="p1-club8" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen" selected>Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts8" value="45" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v8" value="9" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d8" value="11" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls8" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">9</div>
+  <select id="p1-club9" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers" selected>Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts9" value="43" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v9" value="9" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d9" value="12" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls9" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">10</div>
+  <select id="p1-club10" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers" selected>Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts10" value="40" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v10" value="8" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d10" value="12" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls10" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">11</div>
+  <select id="p1-club11" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence" selected>Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts11" value="38" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v11" value="8" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d11" value="13" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls11" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">12</div>
+  <select id="p1-club12" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax" selected>Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts12" value="35" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v12" value="7" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d12" value="13" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls12" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">13</div>
+  <select id="p1-club13" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence" selected>Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts13" value="32" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v13" value="7" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d13" value="14" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls13" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">14</div>
+  <select id="p1-club14" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme" selected>Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts14" value="28" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v14" value="6" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d14" value="15" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls14" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">15</div>
+  <select id="p1-club15" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice" selected>Nice</option><option value="Narbonne">Narbonne</option></select>
+  <input type="number" id="p1-pts15" value="20" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v15" value="4" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d15" value="18" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls15" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access"selected>Access</option><option value="relegate">Relég.</option></select>
+</div><div style="display:grid;grid-template-columns:22px 1fr 40px 28px 28px 80px;gap:4px;align-items:center;margin-bottom:3px">
+  <div style="text-align:center;font-size:10px;font-weight:700;color:#555">16</div>
+  <select id="p1-club16" onchange="p1Apply()" style="font-size:12px;padding:3px 5px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne" selected>Narbonne</option></select>
+  <input type="number" id="p1-pts16" value="5" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-v16" value="1" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <input type="number" id="p1-d16" value="21" min="0" oninput="p1Apply()" style="font-size:12px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%">
+  <select id="p1-cls16" onchange="p1Apply()" style="font-size:11px;padding:3px 3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee"><option value="">—</option><option value="semi">Demi</option><option value="playoff">Barrages</option><option value="access">Access</option><option value="relegate"selected>Relég.</option></select>
+</div>
+    </div>
    </div>
    <div class="ctrl-btns">
     <button class="ctrl-btn secondary" onclick="p1Reset()">Réinitialiser</button>
@@ -890,15 +1075,7 @@ On est tous pareils.</textarea>
     <div class="ctrl-grid2"><input type="text" id="p5-in-title" value="Résultats"><input type="text" id="p5-in-badge" value="J24"></div>
     <input type="text" id="p5-in-sub" value="Pro D2 · Saison 2025–2026" style="margin-top:4px">
    </div>
-   <div class="ctrl-row"><div class="ctrl-label">Matchs (Domicile,ScoreDom,ScoreExt,Extérieur)</div>
-    <textarea id="p5-in-matches" rows="8">Oyonnax,28,14,Grenoble
-Brive,22,20,Vannes
-Colomiers,18,21,Biarritz
-Agen,15,32,Aurillac
-Nevers,24,24,Beziers
-Dax,17,27,Nice
-Provence,10,29,Perpignan</textarea>
-   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Matchs</div><div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:8px;padding:10px"><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;margin-bottom:4px"><div style="font-size:9px;color:#444;text-align:center">Domicile</div><div style="font-size:9px;color:#444;text-align:center">Dom</div><div></div><div style="font-size:9px;color:#444;text-align:center">Ext</div><div style="font-size:9px;color:#444;text-align:center">Extérieur</div></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="p5-home1" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax" selected>Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select><input type="number" id="p5-hs1" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="p5-as1" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="p5-away1" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble" selected>Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="p5-home2" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers" selected>Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select><input type="number" id="p5-hs2" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="p5-as2" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="p5-away2" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive" selected>Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="p5-home3" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz" selected>Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select><input type="number" id="p5-hs3" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="p5-as3" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="p5-away3" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban" selected>Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="p5-home4" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac" selected>Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select><input type="number" id="p5-hs4" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="p5-as4" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="p5-away4" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen" selected>Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="p5-home5" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers" selected>Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select><input type="number" id="p5-hs5" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="p5-as5" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="p5-away5" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers" selected>Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="p5-home6" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence" selected>Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select><input type="number" id="p5-hs6" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="p5-as6" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="p5-away6" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax" selected>Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select></div><div style="display:grid;grid-template-columns:1fr 36px 36px 36px 1fr;gap:4px;align-items:center;margin-bottom:4px"><select id="p5-home7" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence" selected>Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select><input type="number" id="p5-hs7" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><div style="text-align:center;color:#444;font-weight:700">–</div><input type="number" id="p5-as7" value="0" min="0" oninput="p5Apply()" style="font-size:13px;padding:3px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;text-align:center;width:100%"><select id="p5-away7" onchange="p5Apply()" style="font-size:11px;padding:3px 4px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit"><option value="Oyonnax">Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme" selected>Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select></div></div></div>
    <div class="ctrl-btns">
     <button class="ctrl-btn secondary" onclick="p5Reset()">Réinitialiser</button>
     <button class="ctrl-btn primary" onclick="p5Apply()">Appliquer</button>
@@ -2065,12 +2242,19 @@ function makeTemplates(p, dict, defTeams, defMatches, defFrom, defTo, defComp, d
   defT4s1d, defT4s2d, defT4s3d, defT8tag, defT8h1, defT8h2, defT8sub) {
 
   function render1() {
+    // Si les selects existent (nouveau système), déléguer
+    if(document.getElementById(p+"1-club1")) {
+      renderClassementFromSelects(p, p==="t"?14:16, p==="t"?LOGOS:LOGOS_P2);
+      return;
+    }
+    var teamsEl = document.getElementById(p+"1-in-teams");
+    if(!teamsEl) return;
     document.getElementById(p+"1-title").textContent = document.getElementById(p+"1-in-title").value;
     document.getElementById(p+"1-sub").textContent   = document.getElementById(p+"1-in-sub").value;
     document.getElementById(p+"1-badge").textContent = document.getElementById(p+"1-in-badge").value;
     var rows = document.getElementById(p+"1-rows"); rows.innerHTML = "";
     var prevCls = null;
-    document.getElementById(p+"1-in-teams").value.trim().split("\n").forEach(function(line, i) {
+    teamsEl.value.trim().split("\n").forEach(function(line, i) {
       var t = line.split(","); if (t.length < 4) return;
       var name=t[0].trim(), pts=t[1].trim(), v=t[2].trim(), d=t[3].trim(), cls=(t[4]||"").trim();
       if (i > 0 && cls !== prevCls) {
@@ -2144,11 +2328,18 @@ function makeTemplates(p, dict, defTeams, defMatches, defFrom, defTo, defComp, d
   };
 
   function apply5() {
+    // Si les selects existent (nouveau système), déléguer
+    if(document.getElementById(p+"5-home1")) {
+      renderResultatsFromSelects(p, 7, p==="t"?LOGOS:LOGOS_P2);
+      return;
+    }
+    var matchesEl = document.getElementById(p+"5-in-matches");
+    if(!matchesEl) return;
     document.getElementById(p+"5-title").textContent=document.getElementById(p+"5-in-title").value;
     document.getElementById(p+"5-badge").textContent=document.getElementById(p+"5-in-badge").value;
     document.getElementById(p+"5-sub").textContent=document.getElementById(p+"5-in-sub").value;
     var el=document.getElementById(p+"5-matches"); el.innerHTML="";
-    document.getElementById(p+"5-in-matches").value.trim().split("\n").forEach(function(line){
+    matchesEl.value.trim().split("\n").forEach(function(line){
       var t=line.split(","); if(t.length<4) return;
       var home=t[0].trim(),hs=t[1].trim(),as_=t[2].trim(),away=t[3].trim();
       var hw=parseInt(hs)>parseInt(as_), aw=parseInt(as_)>parseInt(hs);
@@ -2272,13 +2463,6 @@ makeTemplates("p", LOGOS_P2,
   "Pro D2 · Saison 26/27 · Lancement","La Pro D2","reprend.",
   "17 clubs, des batailles chaque week-end. Inscris-toi et pronostique dès la J1."
 );
-
-window.addEventListener("load", function() {
-  ["t","p"].forEach(function(p) {
-    window[p+"1Render"](); window[p+"2Apply"](); window[p+"3Apply"](); window[p+"4Apply"]();
-    window[p+"5Apply"](); window[p+"6Apply"](); window[p+"7Apply"](); window[p+"8Apply"]();
-  });
-});
 
 // ══════════ NATIONS CHAMPIONSHIP ══════════
 
@@ -2468,9 +2652,7 @@ function n6Reset(){
   n6Apply();
 }
 
-window.addEventListener("load", function(){
-  n1Apply(); n2Apply(); n3Apply(); n4Apply(); n5Apply(); n6Apply();
-});
+
 
 
 // ══════ GESTION PHOTOS ══════
@@ -2606,10 +2788,291 @@ function c3Reset() {
   c3Apply();
 }
 
-window.addEventListener("load", function() {
-  c1Apply(); c2Apply(); c3Apply();
-});
 
+
+
+// ══ CLASSEMENT depuis selects (t1 et p1) ══
+
+function renderClassementFromSelects(prefix, n, dict) {
+  var title = document.getElementById(prefix+"1-title");
+  var sub   = document.getElementById(prefix+"1-sub");
+  var badge = document.getElementById(prefix+"1-badge");
+  if(title) title.textContent = document.getElementById(prefix+"1-in-title").value;
+  if(sub)   sub.textContent   = document.getElementById(prefix+"1-in-sub").value;
+  if(badge) badge.textContent = document.getElementById(prefix+"1-in-badge").value;
+
+  var rows = document.getElementById(prefix+"1-rows");
+  if(!rows) return;
+  rows.innerHTML = "";
+  var prevCls = null;
+
+  for(var i=1; i<=n; i++) {
+    var clubEl = document.getElementById(prefix+"1-club"+i);
+    var ptsEl  = document.getElementById(prefix+"1-pts"+i);
+    var vEl    = document.getElementById(prefix+"1-v"+i);
+    var dEl    = document.getElementById(prefix+"1-d"+i);
+    var clsEl  = document.getElementById(prefix+"1-cls"+i);
+    if(!clubEl) continue;
+
+    var name = clubEl.value;
+    var pts  = ptsEl ? ptsEl.value : "0";
+    var v    = vEl ? vEl.value : "0";
+    var d    = dEl ? dEl.value : "0";
+    var cls  = clsEl ? clsEl.value : "";
+
+    if(i > 1 && cls !== prevCls) {
+      var sep = document.createElement("div");
+      sep.className = "bp-sep" + (cls==="access"||cls==="relegate" ? " s" : "");
+      rows.appendChild(sep);
+    }
+    prevCls = cls;
+
+    var row = document.createElement("div");
+    row.className = "bp-row " + cls;
+    row.innerHTML = '<div class="bp-rank">'+i+'</div>'
+      +'<div class="bp-logo-cell">'+logoImg(name,18,18,dict)+'</div>'
+      +'<div class="bp-club">'+name+'</div>'
+      +'<div class="bp-pts">'+pts+'</div>'
+      +'<div class="bp-stat">'+v+'</div>'
+      +'<div class="bp-stat">'+d+'</div>';
+    rows.appendChild(row);
+  }
+}
+
+// Surcharge t1Apply et p1Apply
+function t1Apply() { renderClassementFromSelects("t", 14, LOGOS); }
+function t1Render() { t1Apply(); }
+function t1Reset() {
+  document.getElementById("t1-in-title").value = "Classement Top 14";
+  document.getElementById("t1-in-sub").value   = "Saison 2025\u20132026";
+  document.getElementById("t1-in-badge").value = "J24";
+  t1Apply();
+}
+
+function p1Apply() { renderClassementFromSelects("p", 16, LOGOS_P2); }
+function p1Render() { p1Apply(); }
+function p1Reset() {
+  document.getElementById("p1-in-title").value = "Classement Pro D2";
+  document.getElementById("p1-in-sub").value   = "Saison 2025\u20132026";
+  document.getElementById("p1-in-badge").value = "J24";
+  p1Apply();
+}
+
+// ══ RÉSULTATS depuis selects (t5 et p5) ══
+
+function renderResultatsFromSelects(prefix, n, dict) {
+  document.getElementById(prefix+"5-title").textContent = document.getElementById(prefix+"5-in-title").value;
+  document.getElementById(prefix+"5-badge").textContent = document.getElementById(prefix+"5-in-badge").value;
+  document.getElementById(prefix+"5-sub").textContent   = document.getElementById(prefix+"5-in-sub").value;
+
+  var el = document.getElementById(prefix+"5-matches");
+  if(!el) return;
+  el.innerHTML = "";
+
+  for(var i=1; i<=n; i++) {
+    var homeEl = document.getElementById(prefix+"5-home"+i);
+    var awayEl = document.getElementById(prefix+"5-away"+i);
+    var hsEl   = document.getElementById(prefix+"5-hs"+i);
+    var asEl   = document.getElementById(prefix+"5-as"+i);
+    if(!homeEl) continue;
+
+    var home = homeEl.value;
+    var away = awayEl.value;
+    var hs   = parseInt(hsEl ? hsEl.value : "0") || 0;
+    var as_  = parseInt(asEl ? asEl.value : "0") || 0;
+    var hw   = hs > as_, aw = as_ > hs;
+
+    var row = document.createElement("div");
+    row.className = "bp-match";
+    row.innerHTML =
+      '<div class="bp-team">'+logoImg(home,24,24,dict)+'<div class="bp-team-name'+(hw?" winner":"")+'">'+home+'</div></div>'
+      +'<div class="bp-score-block"><div class="bp-score'+(hw?" winner":"")+'">'+hs+'</div><div class="bp-score-sep">\u2013</div><div class="bp-score'+(aw?" winner":"")+'">'+as_+'</div></div>'
+      +'<div class="bp-team away">'+logoImg(away,24,24,dict)+'<div class="bp-team-name'+(aw?" winner":"")+'">'+away+'</div></div>';
+    el.appendChild(row);
+  }
+}
+
+function t5Apply() { renderResultatsFromSelects("t", 7, LOGOS); }
+function t5Reset() {
+  document.getElementById("t5-in-title").value = "R\u00e9sultats";
+  document.getElementById("t5-in-badge").value = "J24";
+  document.getElementById("t5-in-sub").value   = "Top 14 \u00b7 Saison 2025\u20132026";
+  t5Apply();
+}
+
+function p5Apply() { renderResultatsFromSelects("p", 7, LOGOS_P2); }
+function p5Reset() {
+  document.getElementById("p5-in-title").value = "R\u00e9sultats";
+  document.getElementById("p5-in-badge").value = "J24";
+  document.getElementById("p5-in-sub").value   = "Pro D2 \u00b7 Saison 2025\u20132026";
+  p5Apply();
+}
+
+
+
+// ══ CHOC DU WEEK-END ══
+function x1Apply() {
+  var t1 = document.getElementById("x1-in-team1").value;
+  var t2 = document.getElementById("x1-in-team2").value;
+  var allDict = Object.assign({}, LOGOS, LOGOS_P2, LOGOS_NC);
+  document.getElementById("x1-tag").textContent   = document.getElementById("x1-in-tag").value;
+  document.getElementById("x1-enjeu").textContent = document.getElementById("x1-in-enjeu").value;
+  document.getElementById("x1-date").textContent  = document.getElementById("x1-in-date").value;
+  document.getElementById("x1-lieu").textContent  = document.getElementById("x1-in-lieu").value;
+  document.getElementById("x1-team1").textContent = t1;
+  document.getElementById("x1-team2").textContent = t2;
+  document.getElementById("x1-form1").textContent = document.getElementById("x1-in-form1").value;
+  document.getElementById("x1-form2").textContent = document.getElementById("x1-in-form2").value;
+  document.getElementById("x1-logo1").innerHTML   = logoImg(t1,64,64,allDict);
+  document.getElementById("x1-logo2").innerHTML   = logoImg(t2,64,64,allDict);
+}
+function x1Reset() {
+  document.getElementById("x1-in-tag").value   = "Choc du Week-end";
+  document.getElementById("x1-in-team1").value = "Toulouse";
+  document.getElementById("x1-in-team2").value = "Clermont";
+  document.getElementById("x1-in-enjeu").value = "Top 14 · Journée 18";
+  document.getElementById("x1-in-date").value  = "Samedi · 21h05";
+  document.getElementById("x1-in-lieu").value  = "Stade E. Michelin";
+  document.getElementById("x1-in-form1").value = "V V V D V";
+  document.getElementById("x1-in-form2").value = "D V V V D";
+  x1Apply();
+}
+
+// ══ SONDAGE ══
+function x2Apply() {
+  var t1 = document.getElementById("x2-in-team1").value;
+  var t2 = document.getElementById("x2-in-team2").value;
+  var allDict = Object.assign({}, LOGOS, LOGOS_P2, LOGOS_NC);
+  document.getElementById("x2-question").textContent = document.getElementById("x2-in-question").value;
+  document.getElementById("x2-sub").textContent      = document.getElementById("x2-in-sub").value;
+  document.getElementById("x2-team1").textContent    = t1;
+  document.getElementById("x2-team2").textContent    = t2;
+  document.getElementById("x2-logo1").innerHTML      = logoImg(t1,48,48,allDict);
+  document.getElementById("x2-logo2").innerHTML      = logoImg(t2,48,48,allDict);
+}
+function x2Reset() {
+  document.getElementById("x2-in-question").value = "Qui va gagner ?";
+  document.getElementById("x2-in-team1").value    = "Toulouse";
+  document.getElementById("x2-in-team2").value    = "Clermont";
+  document.getElementById("x2-in-sub").value      = "Donne ton pronostic en commentaire !";
+  x2Apply();
+}
+
+// ══ TOP JOUEURS ══
+var X3_DEFAULTS = [
+  {nom:"Antoine Dupont",    club:"Toulouse",    stat:"2 essais · 18 pts"},
+  {nom:"Thomas Ramos",      club:"Toulouse",    stat:"1 essai · 13 pts"},
+  {nom:"Damian Penaud",     club:"Clermont",    stat:"1 essai · 5 pts"},
+  {nom:"Matthieu Jalibert", club:"Bordeaux",    stat:"16 pts (4P, 2T)"},
+  {nom:"Léo Barré",         club:"Racing 92",   stat:"1 essai · 5 pts"},
+];
+
+function x3BuildCtrl() {
+  var ctrl = document.getElementById("x3-players-ctrl");
+  if(!ctrl) return;
+  ctrl.innerHTML = "";
+  for(var i=0;i<5;i++) {
+    var d = X3_DEFAULTS[i];
+    var row = document.createElement("div");
+    row.style.cssText = "background:#0d0d0d;border:1px solid #1a1a1a;border-radius:6px;padding:8px 10px;margin-bottom:6px";
+    row.innerHTML =
+      '<div style="font-size:9px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Joueur '+(i+1)+'</div>'
+      +'<input type="text" id="x3-nom'+i+'" value="'+d.nom+'" placeholder="Nom" oninput="x3Apply()" style="font-size:12px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit;width:100%;margin-bottom:4px">'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">'
+      +'<select id="x3-club'+i+'" onchange="x3Apply()" style="font-size:11px;padding:4px 6px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit">'
+      + ['Toulouse','Montpellier','Pau','Paris','Bordeaux','Clermont','Racing 92','La Rochelle','Toulon','Lyon','Castres','Bayonne','Perpignan','Vannes'].map(function(c){return '<option'+(c===d.club?' selected':'')+'>'+c+'</option>';}).join('')
+      +'</select>'
+      +'<input type="text" id="x3-stat'+i+'" value="'+d.stat+'" placeholder="Stat" oninput="x3Apply()" style="font-size:11px;padding:4px 7px;border-radius:4px;background:#111;border:1px solid #222;color:#eee;font-family:inherit">'
+      +'</div>';
+    ctrl.appendChild(row);
+  }
+}
+
+function x3Apply() {
+  document.getElementById("x3-title").textContent = document.getElementById("x3-in-title").value;
+  document.getElementById("x3-sub").textContent   = document.getElementById("x3-in-sub").value;
+  document.getElementById("x3-badge").textContent = document.getElementById("x3-in-badge").value;
+  var list = document.getElementById("x3-players-list");
+  if(!list) return;
+  list.innerHTML = "";
+  var medals = ["🥇","🥈","🥉","4","5"];
+  var medalColors = ["#C9922A","#888","#7a4510","#444","#444"];
+  for(var i=0;i<5;i++) {
+    var nomEl  = document.getElementById("x3-nom"+i);
+    var clubEl = document.getElementById("x3-club"+i);
+    var statEl = document.getElementById("x3-stat"+i);
+    if(!nomEl) continue;
+    var nom  = nomEl.value;
+    var club = clubEl ? clubEl.value : "";
+    var stat = statEl ? statEl.value : "";
+    var row = document.createElement("div");
+    row.style.cssText = "display:grid;grid-template-columns:28px 28px 1fr auto;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #141414";
+    row.innerHTML =
+      '<div style="font-size:'+(i<3?"16":"12")+'px;text-align:center">'+(i<3?medals[i]:'<span style="font-size:11px;font-weight:700;color:'+medalColors[i]+'">'+(i+1)+'</span>')+'</div>'
+      +'<div>'+logoImg(club,24,24,LOGOS)+'</div>'
+      +'<div><div style="font-family:Barlow Condensed,sans-serif;font-size:14px;font-weight:700;color:#eee;text-transform:uppercase">'+nom+'</div>'
+      +'<div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px">'+club+'</div></div>'
+      +'<div style="font-size:11px;color:#C9922A;font-weight:700;text-align:right;white-space:nowrap">'+stat+'</div>';
+    list.appendChild(row);
+  }
+}
+function x3Reset() {
+  document.getElementById("x3-in-title").value = "Top Joueurs";
+  document.getElementById("x3-in-sub").value   = "Top 14 · Journée 18";
+  document.getElementById("x3-in-badge").value = "J18";
+  X3_DEFAULTS.forEach(function(d,i){
+    var n=document.getElementById("x3-nom"+i); if(n) n.value=d.nom;
+    var c=document.getElementById("x3-club"+i); if(c) c.value=d.club;
+    var s=document.getElementById("x3-stat"+i); if(s) s.value=d.stat;
+  });
+  x3Apply();
+}
+
+// ══ INFOGRAPHIE STAT ══
+function x4Apply() {
+  var club = document.getElementById("x4-in-club").value;
+  var allDict = Object.assign({}, LOGOS, LOGOS_P2, LOGOS_NC);
+  document.getElementById("x4-tag").textContent    = document.getElementById("x4-in-tag").value;
+  document.getElementById("x4-number").textContent = document.getElementById("x4-in-number").value;
+  document.getElementById("x4-label").textContent  = document.getElementById("x4-in-label").value;
+  document.getElementById("x4-sub").textContent    = document.getElementById("x4-in-sub").value;
+  document.getElementById("x4-club").textContent   = club;
+  document.getElementById("x4-logo-img").innerHTML = logoImg(club,36,36,allDict);
+}
+function x4Reset() {
+  document.getElementById("x4-in-tag").value    = "Stat du moment";
+  document.getElementById("x4-in-number").value = "18";
+  document.getElementById("x4-in-label").value  = "matchs sans défaite";
+  document.getElementById("x4-in-sub").value    = "Le Stade Toulousain est en feu. Une série historique en Top 14.";
+  document.getElementById("x4-in-club").value   = "Toulouse";
+  x4Apply();
+}
+
+window.addEventListener("load", function() {
+  // ── Classements et résultats (selects) ──
+  if(document.getElementById("t1-club1")) t1Apply(); else t1Render();
+  if(document.getElementById("p1-club1")) p1Apply(); else { if(window.p1Render) p1Render(); }
+  if(document.getElementById("t5-home1")) t5Apply();
+  if(document.getElementById("p5-home1")) p5Apply();
+  // ── Templates standards ──
+  ["t","p"].forEach(function(p) {
+    if(window[p+"2Apply"]) window[p+"2Apply"]();
+    if(window[p+"3Apply"]) window[p+"3Apply"]();
+    if(window[p+"4Apply"]) window[p+"4Apply"]();
+    if(window[p+"6Apply"]) window[p+"6Apply"]();
+    if(window[p+"7Apply"]) window[p+"7Apply"]();
+    if(window[p+"8Apply"]) window[p+"8Apply"]();
+  });
+  // ── Compositions ──
+  if(window.c1Apply) c1Apply();
+  if(window.c2Apply) c2Apply();
+  if(window.c3Apply) c3Apply();
+  // ── XV de France / NC ──
+  if(window.n1Apply) { n1Apply(); n2Apply(); n3Apply(); n4Apply(); n5Apply(); n6Apply(); }
+  // ── Nouveaux formats ──
+  if(window.x3BuildCtrl) x3BuildCtrl();
+  if(window.x1Apply) { x1Apply(); x2Apply(); x3Apply(); x4Apply(); }
+});
 </script>
 
 <!-- ═══════════════════ NC1 : ANNONCE MATCH ═══════════════════ -->
@@ -3051,38 +3514,6 @@ Ramos</textarea>
  </div>
 </div>
 
-
-
-   </div>
-   <div class="ctrl-btns">
-    <button class="ctrl-btn secondary" onclick="c1Reset()">Réinitialiser</button>
-    <button class="ctrl-btn primary" onclick="c1Apply()">Appliquer</button>
-    <button class="ctrl-btn export-btn" onclick="exportCard('c1-card')">Export PNG</button>
-   </div>
-  </div>
- </div>
-</div>
-
-   </div>
-   <div class="ctrl-btns">
-    <button class="ctrl-btn secondary" onclick="c2Reset()">Réinitialiser</button>
-    <button class="ctrl-btn primary" onclick="c2Apply()">Appliquer</button>
-    <button class="ctrl-btn export-btn" onclick="exportCard('c2-card')">Export PNG</button>
-   </div>
-  </div>
- </div>
-</div>
-
-   </div>
-   <div class="ctrl-btns">
-    <button class="ctrl-btn secondary" onclick="c3Reset()">Réinitialiser</button>
-    <button class="ctrl-btn primary" onclick="c3Apply()">Appliquer</button>
-    <button class="ctrl-btn export-btn" onclick="exportCard('c3-card')">Export PNG</button>
-   </div>
-  </div>
- </div>
-</div>
-
 <!-- ═══ C1 COMPOSITION Top 14 ═══ -->
 <div id="sec-c1" class="section">
  <div class="layout">
@@ -3185,5 +3616,202 @@ Ramos</textarea>
   </div>
  </div>
 </div>
+<!-- ═══════════════════ CHOC DU WEEK-END ═══════════════════ -->
+<div id="sec-x1" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="x1-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:22px 24px 18px">
+     <div class="bp-tag" id="x1-tag">Choc du Week-end</div>
+     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div style="text-align:center;flex:1">
+       <div id="x1-logo1" style="width:64px;height:64px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="x1-team1" style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#eee;text-transform:uppercase">Toulouse</div>
+       <div id="x1-form1" style="font-size:10px;color:#555;margin-top:4px;letter-spacing:1px">V V V D V</div>
+      </div>
+      <div style="text-align:center;padding:0 10px">
+       <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#C9922A;letter-spacing:2px">VS</div>
+       <div id="x1-date" style="font-size:11px;color:#555;margin-top:6px">Samedi · 21h05</div>
+       <div id="x1-lieu" style="font-size:10px;color:#333;margin-top:2px">Stade E. Michelin</div>
+      </div>
+      <div style="text-align:center;flex:1">
+       <div id="x1-logo2" style="width:64px;height:64px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="x1-team2" style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;color:#eee;text-transform:uppercase">Clermont</div>
+       <div id="x1-form2" style="font-size:10px;color:#555;margin-top:4px;letter-spacing:1px">D V V V D</div>
+      </div>
+     </div>
+     <div class="bp-sep-line"></div>
+     <div id="x1-enjeu" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;color:#555;text-align:center;letter-spacing:1px;text-transform:uppercase;margin-top:10px">Top 14 · Journée 18</div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Choc du Week-end</div>
+   <div class="ctrl-row"><div class="ctrl-label">Tag</div><input type="text" id="x1-in-tag" value="Choc du Week-end"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Compétition · Journée</div><input type="text" id="x1-in-enjeu" value="Top 14 · Journée 18"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Date · Lieu</div>
+    <input type="text" id="x1-in-date" value="Samedi · 21h05">
+    <input type="text" id="x1-in-lieu" value="Stade E. Michelin" style="margin-top:4px">
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Équipe 1</div>
+    <select id="x1-in-team1" onchange="x1Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%">
+     <optgroup label="── Top 14 ──"><option>Toulouse</option><option>Montpellier</option><option>Pau</option><option>Paris</option><option>Bordeaux</option><option>Clermont</option><option>Racing 92</option><option>La Rochelle</option><option>Toulon</option><option>Lyon</option><option>Castres</option><option>Bayonne</option><option>Perpignan</option><option>Vannes</option></optgroup>
+     <optgroup label="── Pro D2 ──"><option>Oyonnax</option><option>Grenoble</option><option>Colomiers</option><option>Brive</option><option>Biarritz</option><option>Montauban</option><option>Aurillac</option><option>Agen</option><option>Nevers</option><option>Beziers</option><option>Provence</option><option>Dax</option><option>Valence</option><option>Angouleme</option><option>Nice</option><option>Narbonne</option></optgroup>
+    </select>
+    <input type="text" id="x1-in-form1" value="V V V D V" placeholder="Forme (ex: V V D V V)" style="margin-top:4px">
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Équipe 2</div>
+    <select id="x1-in-team2" onchange="x1Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%">
+     <optgroup label="── Top 14 ──"><option>Toulouse</option><option>Montpellier</option><option>Pau</option><option>Paris</option><option>Bordeaux</option><option selected>Clermont</option><option>Racing 92</option><option>La Rochelle</option><option>Toulon</option><option>Lyon</option><option>Castres</option><option>Bayonne</option><option>Perpignan</option><option>Vannes</option></optgroup>
+     <optgroup label="── Pro D2 ──"><option>Oyonnax</option><option>Grenoble</option><option>Colomiers</option><option>Brive</option><option>Biarritz</option><option>Montauban</option><option>Aurillac</option><option>Agen</option><option>Nevers</option><option>Beziers</option><option>Provence</option><option>Dax</option><option>Valence</option><option>Angouleme</option><option>Nice</option><option>Narbonne</option></optgroup>
+    </select>
+    <input type="text" id="x1-in-form2" value="D V V V D" placeholder="Forme (ex: V D V V D)" style="margin-top:4px">
+   </div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="x1Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="x1Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('x1-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<!-- ═══════════════════ SONDAGE ═══════════════════ -->
+<div id="sec-x2" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="x2-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:24px 26px 20px">
+     <div class="bp-tag" id="x2-tag">Sondage</div>
+     <div id="x2-question" style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#eee;text-transform:uppercase;line-height:1;margin-bottom:20px">Qui va gagner ?</div>
+     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+      <div style="background:#1a1a0a;border:1px solid #C9922A44;border-radius:8px;padding:14px;text-align:center">
+       <div id="x2-logo1" style="width:48px;height:48px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="x2-team1" style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#C9922A;text-transform:uppercase">Toulouse</div>
+       <div style="font-size:11px;color:#444;margin-top:4px;letter-spacing:1px">👆 Commente 1</div>
+      </div>
+      <div style="background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:14px;text-align:center">
+       <div id="x2-logo2" style="width:48px;height:48px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="x2-team2" style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#888;text-transform:uppercase">Clermont</div>
+       <div style="font-size:11px;color:#444;margin-top:4px;letter-spacing:1px">👆 Commente 2</div>
+      </div>
+     </div>
+     <div id="x2-sub" style="font-size:12px;color:#444;text-align:center;font-family:'Barlow',sans-serif">Donne ton pronostic en commentaire !</div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Sondage</div>
+   <div class="ctrl-row"><div class="ctrl-label">Question</div><input type="text" id="x2-in-question" value="Qui va gagner ?"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Équipe 1</div>
+    <select id="x2-in-team1" onchange="x2Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%">
+     <optgroup label="── Top 14 ──"><option selected>Toulouse</option><option>Montpellier</option><option>Pau</option><option>Paris</option><option>Bordeaux</option><option>Clermont</option><option>Racing 92</option><option>La Rochelle</option><option>Toulon</option><option>Lyon</option><option>Castres</option><option>Bayonne</option><option>Perpignan</option><option>Vannes</option></optgroup>
+     <optgroup label="── Pro D2 ──"><option>Oyonnax</option><option>Grenoble</option><option>Colomiers</option><option>Brive</option><option>Biarritz</option><option>Montauban</option><option>Aurillac</option><option>Agen</option><option>Nevers</option><option>Beziers</option><option>Provence</option><option>Dax</option><option>Valence</option><option>Angouleme</option><option>Nice</option><option>Narbonne</option></optgroup>
+     <optgroup label="── XV de France ──"><option>France</option><option>Angleterre</option><option>Irlande</option><option>Écosse</option><option>Pays de Galles</option><option>Italie</option><option>Nouvelle-Zélande</option><option>Afrique du Sud</option><option>Argentine</option><option>Australie</option><option>Japon</option><option>Fidji</option></optgroup>
+    </select>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Équipe 2</div>
+    <select id="x2-in-team2" onchange="x2Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%">
+     <optgroup label="── Top 14 ──"><option>Toulouse</option><option>Montpellier</option><option>Pau</option><option>Paris</option><option>Bordeaux</option><option selected>Clermont</option><option>Racing 92</option><option>La Rochelle</option><option>Toulon</option><option>Lyon</option><option>Castres</option><option>Bayonne</option><option>Perpignan</option><option>Vannes</option></optgroup>
+     <optgroup label="── Pro D2 ──"><option>Oyonnax</option><option>Grenoble</option><option>Colomiers</option><option>Brive</option><option>Biarritz</option><option>Montauban</option><option>Aurillac</option><option>Agen</option><option>Nevers</option><option>Beziers</option><option>Provence</option><option>Dax</option><option>Valence</option><option>Angouleme</option><option>Nice</option><option>Narbonne</option></optgroup>
+     <optgroup label="── XV de France ──"><option>France</option><option>Angleterre</option><option>Irlande</option><option>Écosse</option><option>Pays de Galles</option><option>Italie</option><option>Nouvelle-Zélande</option><option>Afrique du Sud</option><option>Argentine</option><option>Australie</option><option>Japon</option><option>Fidji</option></optgroup>
+    </select>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Sous-texte</div><input type="text" id="x2-in-sub" value="Donne ton pronostic en commentaire !"></div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="x2Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="x2Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('x2-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<!-- ═══════════════════ TOP JOUEURS ═══════════════════ -->
+<div id="sec-x3" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="x3-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:18px 20px 16px">
+     <div class="bp-header">
+      <div><div class="bp-title" id="x3-title">Top Joueurs</div><div class="bp-title-sub" id="x3-sub">Top 14 · Journée 18</div></div>
+      <div class="bp-badge" id="x3-badge">J18</div>
+     </div>
+     <div id="x3-players-list"></div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Top Joueurs</div>
+   <div class="ctrl-row"><div class="ctrl-label">Titre · Journée</div>
+    <input type="text" id="x3-in-title" value="Top Joueurs">
+    <div class="ctrl-grid2" style="margin-top:4px"><input type="text" id="x3-in-sub" value="Top 14 · Journée 18"><input type="text" id="x3-in-badge" value="J18"></div>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Joueurs (Nom, Club, Stat)</div>
+    <div id="x3-players-ctrl"></div>
+   </div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="x3Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="x3Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('x3-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<!-- ═══════════════════ INFOGRAPHIE STAT ═══════════════════ -->
+<div id="sec-x4" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="x4-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:32px 28px 24px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between">
+     <div>
+      <div class="bp-tag" id="x4-tag">Stat du moment</div>
+      <div id="x4-number" style="font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#C9922A;line-height:0.9;letter-spacing:-2px;margin-bottom:8px">18</div>
+      <div class="bp-gold-sep"></div>
+      <div id="x4-label" style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#eee;text-transform:uppercase;line-height:1;margin-top:10px">matchs sans défaite</div>
+      <div id="x4-sub" style="font-size:13px;color:#555;line-height:1.5;font-family:'Barlow',sans-serif;margin-top:10px">Le Stade Toulousain est en feu. Une série historique en Top 14.</div>
+      <div id="x4-logo" style="margin-top:16px;display:flex;align-items:center;gap:10px">
+       <div id="x4-logo-img" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="x4-club" style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1px">Toulouse</div>
+      </div>
+     </div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Infographie Stat</div>
+   <div class="ctrl-row"><div class="ctrl-label">Tag</div><input type="text" id="x4-in-tag" value="Stat du moment"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Le grand chiffre</div><input type="text" id="x4-in-number" value="18"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Label de la stat</div><input type="text" id="x4-in-label" value="matchs sans défaite"></div>
+   <div class="ctrl-row"><div class="ctrl-label">Description</div><textarea id="x4-in-sub">Le Stade Toulousain est en feu. Une série historique en Top 14.</textarea></div>
+   <div class="ctrl-row"><div class="ctrl-label">Club / Nation</div>
+    <select id="x4-in-club" onchange="x4Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%">
+     <optgroup label="── Top 14 ──"><option selected>Toulouse</option><option>Montpellier</option><option>Pau</option><option>Paris</option><option>Bordeaux</option><option>Clermont</option><option>Racing 92</option><option>La Rochelle</option><option>Toulon</option><option>Lyon</option><option>Castres</option><option>Bayonne</option><option>Perpignan</option><option>Vannes</option></optgroup>
+     <optgroup label="── Pro D2 ──"><option>Oyonnax</option><option>Grenoble</option><option>Colomiers</option><option>Brive</option><option>Biarritz</option><option>Montauban</option><option>Aurillac</option><option>Agen</option><option>Nevers</option><option>Beziers</option><option>Provence</option><option>Dax</option><option>Valence</option><option>Angouleme</option><option>Nice</option><option>Narbonne</option></optgroup>
+     <optgroup label="── XV de France ──"><option>France</option><option>Angleterre</option><option>Irlande</option><option>Écosse</option><option>Pays de Galles</option><option>Italie</option><option>Nouvelle-Zélande</option><option>Afrique du Sud</option><option>Argentine</option><option>Australie</option><option>Japon</option><option>Fidji</option></optgroup>
+    </select>
+   </div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="x4Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="x4Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('x4-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+
 </body>
 </html>
