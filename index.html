@@ -231,6 +231,7 @@ h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 
       <button class="nav-btn" onclick="showSection('t7',this)">Mercato</button>
       <button class="nav-btn" onclick="showSection('t8',this)">Lancement</button>
       <button class="nav-btn" onclick="showSection('c1',this)">Composition</button>
+      <button class="nav-btn" onclick="showSection('r1',this)">Résultat unique</button>
     </div>
   </div>
   <div class="nav-col">
@@ -245,6 +246,7 @@ h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 
       <button class="nav-btn" onclick="showSection('p7',this)">Mercato</button>
       <button class="nav-btn" onclick="showSection('p8',this)">Lancement</button>
       <button class="nav-btn" onclick="showSection('c2',this)">Composition</button>
+      <button class="nav-btn" onclick="showSection('r2',this)">Résultat unique</button>
     </div>
   </div>
   <div class="nav-col">
@@ -3072,7 +3074,71 @@ window.addEventListener("load", function() {
   // ── Nouveaux formats ──
   if(window.x3BuildCtrl) x3BuildCtrl();
   if(window.x1Apply) { x1Apply(); x2Apply(); x3Apply(); x4Apply(); }
+  if(window.r1Apply) { r1Apply(); r2Apply(); }
 });
+
+// ══ RÉSULTAT UNIQUE ══
+function resultApply(prefix, dict) {
+  var home = document.getElementById(prefix+"-in-home").value;
+  var away = document.getElementById(prefix+"-in-away").value;
+  var s1   = parseInt(document.getElementById(prefix+"-in-s1").value) || 0;
+  var s2   = parseInt(document.getElementById(prefix+"-in-s2").value) || 0;
+  var hw   = s1 > s2, aw = s2 > s1;
+
+  document.getElementById(prefix+"-tag").textContent   = document.getElementById(prefix+"-in-tag").value;
+  document.getElementById(prefix+"-badge").textContent = document.getElementById(prefix+"-in-badge").value;
+  document.getElementById(prefix+"-logo1").innerHTML   = logoImg(home, 72, 72, dict);
+  document.getElementById(prefix+"-logo2").innerHTML   = logoImg(away, 72, 72, dict);
+  document.getElementById(prefix+"-team1").textContent = home;
+  document.getElementById(prefix+"-team2").textContent = away;
+  document.getElementById(prefix+"-score1").textContent = s1;
+  document.getElementById(prefix+"-score2").textContent = s2;
+  document.getElementById(prefix+"-score1").style.color = hw ? "#C9922A" : "#555";
+  document.getElementById(prefix+"-score2").style.color = aw ? "#C9922A" : "#555";
+  document.getElementById(prefix+"-team1").style.color  = hw ? "#eee" : "#888";
+  document.getElementById(prefix+"-team2").style.color  = aw ? "#eee" : "#888";
+
+  var mi = document.getElementById(prefix+"-in-mi").value.trim();
+  document.getElementById(prefix+"-mi-temps").textContent = mi;
+
+  var e1 = document.getElementById(prefix+"-in-e1").value.trim();
+  var e2 = document.getElementById(prefix+"-in-e2").value.trim();
+  var hasEssais = e1 || e2;
+  document.getElementById(prefix+"-essais-block").style.display = hasEssais ? "block" : "none";
+  if(hasEssais) {
+    document.getElementById(prefix+"-essais1").innerHTML = e1 ? e1.split("\n").join("<br>") : "—";
+    document.getElementById(prefix+"-essais2").innerHTML = e2 ? e2.split("\n").join("<br>") : "—";
+  }
+}
+
+function r1Apply() { resultApply("r1", LOGOS); }
+function r1Reset() {
+  document.getElementById("r1-in-tag").value   = "Top 14 · Résultat";
+  document.getElementById("r1-in-badge").value = "J24";
+  document.getElementById("r1-in-home").value  = "Toulouse";
+  document.getElementById("r1-in-away").value  = "Clermont";
+  document.getElementById("r1-in-s1").value    = "28";
+  document.getElementById("r1-in-s2").value    = "12";
+  document.getElementById("r1-in-mi").value    = "";
+  document.getElementById("r1-in-e1").value    = "";
+  document.getElementById("r1-in-e2").value    = "";
+  r1Apply();
+}
+
+function r2Apply() { resultApply("r2", LOGOS_P2); }
+function r2Reset() {
+  document.getElementById("r2-in-tag").value   = "Pro D2 · Résultat";
+  document.getElementById("r2-in-badge").value = "J24";
+  document.getElementById("r2-in-home").value  = "Oyonnax";
+  document.getElementById("r2-in-away").value  = "Grenoble";
+  document.getElementById("r2-in-s1").value    = "28";
+  document.getElementById("r2-in-s2").value    = "14";
+  document.getElementById("r2-in-mi").value    = "";
+  document.getElementById("r2-in-e1").value    = "";
+  document.getElementById("r2-in-e2").value    = "";
+  r2Apply();
+}
+
 </script>
 
 <!-- ═══════════════════ NC1 : ANNONCE MATCH ═══════════════════ -->
@@ -3813,5 +3879,178 @@ Ramos</textarea>
  </div>
 </div>
 
+
+<!-- ═══ R1 RÉSULTAT UNIQUE Top 14 ═══ -->
+<div id="sec-r1" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="r1-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:22px 24px 20px">
+     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+      <div class="bp-tag" id="r1-tag">Top 14 · Résultat</div>
+      <div class="bp-badge" id="r1-badge">J24</div>
+     </div>
+     <div style="display:flex;align-items:center;justify-content:space-between;margin:20px 0">
+      <div style="text-align:center;flex:1">
+       <div id="r1-logo1" style="width:72px;height:72px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="r1-team1" style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#eee;text-transform:uppercase;letter-spacing:0.5px">Toulouse</div>
+       <div id="r1-label1" style="font-size:10px;color:#555;margin-top:3px;letter-spacing:1px">Domicile</div>
+      </div>
+      <div style="text-align:center;padding:0 12px">
+       <div style="display:flex;align-items:center;gap:10px">
+        <div id="r1-score1" style="font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;color:#C9922A;line-height:1;min-width:50px;text-align:center">28</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:#333">–</div>
+        <div id="r1-score2" style="font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;color:#555;line-height:1;min-width:50px;text-align:center">12</div>
+       </div>
+       <div id="r1-mi-temps" style="font-size:10px;color:#333;letter-spacing:1px;margin-top:4px;text-transform:uppercase"></div>
+      </div>
+      <div style="text-align:center;flex:1">
+       <div id="r1-logo2" style="width:72px;height:72px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="r1-team2" style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#eee;text-transform:uppercase;letter-spacing:0.5px">Clermont</div>
+       <div id="r1-label2" style="font-size:10px;color:#555;margin-top:3px;letter-spacing:1px">Extérieur</div>
+      </div>
+     </div>
+     <div class="bp-sep-line"></div>
+     <div id="r1-essais-block" style="margin-top:12px;display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+       <div>
+        <div style="font-size:9px;color:#444;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">Essais domicile</div>
+        <div id="r1-essais1" style="font-size:11px;color:#888;line-height:1.6;font-family:'Barlow',sans-serif"></div>
+       </div>
+       <div>
+        <div style="font-size:9px;color:#444;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">Essais extérieur</div>
+        <div id="r1-essais2" style="font-size:11px;color:#888;line-height:1.6;font-family:'Barlow',sans-serif"></div>
+       </div>
+      </div>
+     </div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Résultat unique — Top 14</div>
+   <div class="ctrl-row"><div class="ctrl-label">Tag · Journée</div>
+    <div class="ctrl-grid2">
+     <input type="text" id="r1-in-tag" value="Top 14 · Résultat">
+     <input type="text" id="r1-in-badge" value="J24">
+    </div>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Équipe domicile</div>
+    <select id="r1-in-home" onchange="r1Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%"><option value="Toulouse" selected>Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont">Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Équipe extérieure</div>
+    <select id="r1-in-away" onchange="r1Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%"><option value="Toulouse">Toulouse</option><option value="Montpellier">Montpellier</option><option value="Pau">Pau</option><option value="Paris">Paris</option><option value="Bordeaux">Bordeaux</option><option value="Clermont" selected>Clermont</option><option value="Racing 92">Racing 92</option><option value="La Rochelle">La Rochelle</option><option value="Toulon">Toulon</option><option value="Lyon">Lyon</option><option value="Castres">Castres</option><option value="Bayonne">Bayonne</option><option value="Perpignan">Perpignan</option><option value="Vannes">Vannes</option></select>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Score</div>
+    <div class="ctrl-grid2">
+     <input type="number" id="r1-in-s1" value="28" min="0" oninput="r1Apply()" style="font-size:22px;padding:8px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#C9922A;font-weight:700;text-align:center;width:100%;font-family:'Barlow Condensed',sans-serif">
+     <input type="number" id="r1-in-s2" value="12" min="0" oninput="r1Apply()" style="font-size:22px;padding:8px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-weight:700;text-align:center;width:100%;font-family:'Barlow Condensed',sans-serif">
+    </div>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Mi-temps (optionnel)</div>
+    <input type="text" id="r1-in-mi" placeholder="Ex : 14-10 à la mi-temps" oninput="r1Apply()">
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Essais domicile (optionnel, un par ligne)</div>
+    <textarea id="r1-in-e1" rows="3" placeholder="Ex: Dupont (12')" oninput="r1Apply()"></textarea>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Essais extérieur (optionnel, un par ligne)</div>
+    <textarea id="r1-in-e2" rows="3" placeholder="Ex: Penaud (34')" oninput="r1Apply()"></textarea>
+   </div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="r1Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="r1Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('r1-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
+<!-- ═══ R2 RÉSULTAT UNIQUE Pro D2 ═══ -->
+<div id="sec-r2" class="section">
+ <div class="layout">
+  <div class="preview-wrap">
+   <p class="preview-label">Aperçu</p>
+   <div id="r2-card" class="bp-outer">
+    <div class="bp-top-bar"></div>
+    <div class="bp-inner" style="padding:22px 24px 20px">
+     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+      <div class="bp-tag" id="r2-tag">Pro D2 · Résultat</div>
+      <div class="bp-badge" id="r2-badge">J24</div>
+     </div>
+     <div style="display:flex;align-items:center;justify-content:space-between;margin:20px 0">
+      <div style="text-align:center;flex:1">
+       <div id="r2-logo1" style="width:72px;height:72px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="r2-team1" style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#eee;text-transform:uppercase;letter-spacing:0.5px">Toulouse</div>
+       <div id="r2-label1" style="font-size:10px;color:#555;margin-top:3px;letter-spacing:1px">Domicile</div>
+      </div>
+      <div style="text-align:center;padding:0 12px">
+       <div style="display:flex;align-items:center;gap:10px">
+        <div id="r2-score1" style="font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;color:#C9922A;line-height:1;min-width:50px;text-align:center">28</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:#333">–</div>
+        <div id="r2-score2" style="font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;color:#555;line-height:1;min-width:50px;text-align:center">12</div>
+       </div>
+       <div id="r2-mi-temps" style="font-size:10px;color:#333;letter-spacing:1px;margin-top:4px;text-transform:uppercase"></div>
+      </div>
+      <div style="text-align:center;flex:1">
+       <div id="r2-logo2" style="width:72px;height:72px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center"></div>
+       <div id="r2-team2" style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:#eee;text-transform:uppercase;letter-spacing:0.5px">Clermont</div>
+       <div id="r2-label2" style="font-size:10px;color:#555;margin-top:3px;letter-spacing:1px">Extérieur</div>
+      </div>
+     </div>
+     <div class="bp-sep-line"></div>
+     <div id="r2-essais-block" style="margin-top:12px;display:none">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+       <div>
+        <div style="font-size:9px;color:#444;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">Essais domicile</div>
+        <div id="r2-essais1" style="font-size:11px;color:#888;line-height:1.6;font-family:'Barlow',sans-serif"></div>
+       </div>
+       <div>
+        <div style="font-size:9px;color:#444;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px">Essais extérieur</div>
+        <div id="r2-essais2" style="font-size:11px;color:#888;line-height:1.6;font-family:'Barlow',sans-serif"></div>
+       </div>
+      </div>
+     </div>
+     <div class="bp-footer-row"><div class="bp-brand">&#x26DC; Brennus Prono</div><div class="bp-url">brennusprono.fr</div></div>
+    </div>
+   </div>
+  </div>
+  <div class="controls-wrap">
+   <div class="ctrl-title">Résultat unique — Pro D2</div>
+   <div class="ctrl-row"><div class="ctrl-label">Tag · Journée</div>
+    <div class="ctrl-grid2">
+     <input type="text" id="r2-in-tag" value="Pro D2 · Résultat">
+     <input type="text" id="r2-in-badge" value="J24">
+    </div>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Équipe domicile</div>
+    <select id="r2-in-home" onchange="r2Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%"><option value="Oyonnax" selected>Oyonnax</option><option value="Grenoble">Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Équipe extérieure</div>
+    <select id="r2-in-away" onchange="r2Apply()" style="font-size:13px;padding:7px 10px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-family:inherit;width:100%"><option value="Oyonnax">Oyonnax</option><option value="Grenoble" selected>Grenoble</option><option value="Colomiers">Colomiers</option><option value="Brive">Brive</option><option value="Biarritz">Biarritz</option><option value="Montauban">Montauban</option><option value="Aurillac">Aurillac</option><option value="Agen">Agen</option><option value="Nevers">Nevers</option><option value="Beziers">Beziers</option><option value="Provence">Provence</option><option value="Dax">Dax</option><option value="Valence">Valence</option><option value="Angouleme">Angouleme</option><option value="Nice">Nice</option><option value="Narbonne">Narbonne</option></select>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Score</div>
+    <div class="ctrl-grid2">
+     <input type="number" id="r2-in-s1" value="28" min="0" oninput="r2Apply()" style="font-size:22px;padding:8px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#C9922A;font-weight:700;text-align:center;width:100%;font-family:'Barlow Condensed',sans-serif">
+     <input type="number" id="r2-in-s2" value="12" min="0" oninput="r2Apply()" style="font-size:22px;padding:8px;border-radius:6px;background:#111;border:1px solid #2a2a2a;color:#eee;font-weight:700;text-align:center;width:100%;font-family:'Barlow Condensed',sans-serif">
+    </div>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Mi-temps (optionnel)</div>
+    <input type="text" id="r2-in-mi" placeholder="Ex : 14-10 à la mi-temps" oninput="r2Apply()">
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Essais domicile (optionnel, un par ligne)</div>
+    <textarea id="r2-in-e1" rows="3" placeholder="Ex: Dupont (12')" oninput="r2Apply()"></textarea>
+   </div>
+   <div class="ctrl-row"><div class="ctrl-label">Essais extérieur (optionnel, un par ligne)</div>
+    <textarea id="r2-in-e2" rows="3" placeholder="Ex: Penaud (34')" oninput="r2Apply()"></textarea>
+   </div>
+   <div class="ctrl-btns">
+    <button class="ctrl-btn secondary" onclick="r2Reset()">Réinitialiser</button>
+    <button class="ctrl-btn primary" onclick="r2Apply()">Appliquer</button>
+    <button class="ctrl-btn export-btn" onclick="exportCard('r2-card')">Export PNG</button>
+   </div>
+  </div>
+ </div>
+</div>
 </body>
 </html>
